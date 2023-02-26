@@ -1,0 +1,7 @@
+@Date:   12-04-2020 16:29
+@Last modified time: 12-04-2020 16:30
+@Copyright: (c) Duckfine
+
+
+
+Main Functionaltity such as add new key to database, etc.

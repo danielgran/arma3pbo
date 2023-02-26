@@ -1,0 +1,1 @@
+#define LOG(MSG, LVL) ["DUCK.CORE", MSG, LVL] call log_fnc_log
