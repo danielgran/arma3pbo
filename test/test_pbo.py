@@ -6,6 +6,17 @@ from arma3pbo.pbo.business.pbo_header import PBOHeader
 
 
 class PBOTest(unittest.TestCase):
+  
+  def test_create_header_without_prefix(self):
+     head = PBOHeader.create_head_bytecode()
+     self.assertEqual(b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", head)
+
+  def test_create_header_with_prefix(self):
+    prefix="SOMEMISSIONPREFIX"
+    head = PBOHeader.create_head_bytecode(prefix)
+    self.assertEqual(head, b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0prefix\0" + prefix.encode("utf-8") + b"\0")
+
+
 
   def test_create_bytecode_from_entry(self):
     base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/test/testfiles/testmission/KOTH.Altis"

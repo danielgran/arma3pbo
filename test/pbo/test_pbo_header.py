@@ -7,11 +7,6 @@ from arma3pbo.pbo.business.pbo_header import PBOHeader
 
 class TestPboHeader(unittest.TestCase):
 
-
-  def test_create_header(self):
-    self.assertEqual(b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0prefix\0", PBOHeader.static_header)
-
-
   def test_create_entry_from_file(self):
     base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/testfiles/testmission/KOTH.Altis"
     file_in_mission = "core/methods/fn_getAllTurretWeapons.sqf"
