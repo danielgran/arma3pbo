@@ -17,3 +17,16 @@ class PBOHeader:
             timestamp=ctypes.c_uint32(int(os.path.getmtime(complete_path))),
             data_size=ctypes.c_uint32(int(os.path.getsize(complete_path)))
         )
+    
+    @staticmethod
+    def create_bytecode_from_entry(entry):
+        bytes_from_entry_fields=bytearray()
+        bytes_from_entry_fields.extend(entry.filename.encode("utf-8"))
+        bytes_from_entry_fields.extend(b"\0")
+        bytes_from_entry_fields.extend(bytearray(entry.mimetype))
+        bytes_from_entry_fields.extend(bytearray(entry.original_size))
+        bytes_from_entry_fields.extend(bytearray(entry.reserved))
+        bytes_from_entry_fields.extend(bytearray(entry.timestamp))
+        bytes_from_entry_fields.extend(bytearray(entry.data_size))
+        return bytes_from_entry_fields
+    
