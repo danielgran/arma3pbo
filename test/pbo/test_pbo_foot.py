@@ -4,7 +4,7 @@ import hashlib
 from arma3pbo.pbo.pbo_foot import PBOFoot
 
 
-class MyTestCase(unittest.TestCase):
+class TestPBOFoot(unittest.TestCase):
     def test_hash_bytecode(self):
         sample_bytecode = bytearray()
         sample_bytecode.extend(bytearray(b"test."))
