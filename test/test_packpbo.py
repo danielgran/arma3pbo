@@ -1,14 +1,48 @@
 import os
 import unittest
 
-from src.pbo.pbo import pbo
-
+from arma3pbo.pbo.pbo import pbo
+from arma3pbo.pbo.business.entity.header_entry import HeaderEntry
 
 class PBOTest(unittest.TestCase):
 
-    def test_create_header(self):
-        self.assertEqual(b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0prefix\0", pbo.static_header)
+   
 
+
+    @unittest.skip("Not implemented yet")
+    def test_create_bytecode_from_entry(self):
+        filename = "mission.sqm"
+        mimetype = 0x56657273
+        original_size = 0x0000000C
+        reserved = 0x00000000
+        timestamp = 0x00000000
+        data_size = 0x0000000C
+        data = b"testtesttest"
+
+        expected_bytecode = bytearray()
+        expected_bytecode.extend(filename.encode("utf-8") + b"\0")
+
+
+        byteorder='little'
+
+        expected_bytecode.extend(mimetype.to_bytes(4, byteorder))
+        expected_bytecode.extend(original_size.to_bytes(4, byteorder))
+        expected_bytecode.extend(reserved.to_bytes(4, byteorder))
+        expected_bytecode.extend(timestamp.to_bytes(4, byteorder))
+        expected_bytecode.extend(data_size.to_bytes(4, byteorder))
+
+
+        a=1
+
+
+        self.assertEquals(expected_bytecode, pbo.create_bytecode_from_entry(filename, mimetype, original_size, reserved, timestamp, data_size, data))
+
+
+
+
+
+
+    @unittest.skip("Not implemented yet")
     def test_pack_mission_pbo_bytecode(self):
         self.assertTrue(True)
         absolute_project_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +58,7 @@ class PBOTest(unittest.TestCase):
         all_files_in_folder_and_subfolders = [file.lstrip("/") for file in all_files_in_folder_and_subfolders]
 
         bytes = bytearray()
-        bytes.extend(pbo.static_header)
+        bytes.extend()
         bytes.extend()
 
 
