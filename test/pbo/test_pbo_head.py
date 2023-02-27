@@ -10,7 +10,7 @@ class PBOTest(unittest.TestCase):
   
 
   def test_create_head_bytecode(self):
-    self.assertEqual(bytearray(b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"), PBOHead.head_bytecode)
+    self.assertEqual(bytearray(b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"), PBOHead.head_start_bytecode)
 
   def test_create_head_with_key_value_pair(self):
     key="prefix"
@@ -64,6 +64,12 @@ class PBOTest(unittest.TestCase):
     self.assertEqual(bytearray(expected_reserved), bytearray(entry.reserved))
     self.assertEqual(bytearray(expected_timestamp), bytearray(entry.timestamp))
     self.assertEqual(bytearray(expected_data_size), bytearray(entry.data_size))
+
+  def test_create_empty_header_entry(self):
+    bytes = PBOHead.head_empty_entry
+    expected_bytes = bytearray([0 for i in range(21)])
+
+    self.assertEqual(expected_bytes, bytes)
 
 
   @unittest.skip("Not implemented yet")

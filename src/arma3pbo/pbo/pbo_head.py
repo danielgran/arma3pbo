@@ -6,7 +6,8 @@ from arma3pbo.pbo.entity.header_entry import HeaderEntry
 
 class PBOHead:
 
-    head_bytecode = bytearray(b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0")
+    head_start_bytecode = bytearray(b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0")
+    head_empty_entry = bytearray(b"\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0")
 
     @staticmethod
     def create_header_bytecode(key, value):
