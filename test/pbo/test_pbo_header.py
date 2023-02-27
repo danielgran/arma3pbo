@@ -7,8 +7,10 @@ from arma3pbo.pbo.business.pbo_header import PBOHeader
 
 class TestPboHeader(unittest.TestCase):
 
+
   def test_create_header(self):
     self.assertEqual(b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0prefix\0", PBOHeader.static_header)
+
 
   def test_create_entry_from_file(self):
     base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/testfiles/testmission/KOTH.Altis"
@@ -19,9 +21,7 @@ class TestPboHeader(unittest.TestCase):
     expected_data_size = expected_original_size
     exptected_mimetype = ctypes.c_uint32(0)
 
-
     entry = PBOHeader.header_entry_from_file(base_path, file_in_mission)
-
 
     self.assertEqual(file_in_mission, entry.filename)
     self.assertEqual(bytearray(exptected_mimetype), bytearray(entry.mimetype))

@@ -1,6 +1,6 @@
 import unittest
 
-from src.path.tools import tools
+from arma3pbo.path.tools import tools
 
 
 class TestPathTools(unittest.TestCase):
@@ -9,6 +9,7 @@ class TestPathTools(unittest.TestCase):
         expected_winPath = "C:\\Users\\username\\Documents\\Arma 3 - Other Profiles\\username\\mods\\@my_mod\\addons\\my_mod"
         self.assertEqual(expected_winPath, tools.convert_to_winPath(sample_path))
         self.assertEqual(expected_winPath, tools.convert_to_winPath(expected_winPath))
+
 
     def test_convert_to_linuxPath(self):
         sample_path = "C:\\Users\\username\\Documents\\Arma 3 - Other Profiles\\username\\mods\\@my_mod\\addons\\my_mod"
