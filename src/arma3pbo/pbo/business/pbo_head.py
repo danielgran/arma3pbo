@@ -4,15 +4,18 @@ import ctypes
 from arma3pbo.pbo.business.entity.header_entry import HeaderEntry
 
 
-class PBOHeader:
+class PBOHead:
+
+    head_bytecode = bytearray(b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0")
 
     @staticmethod
-    def create_head_bytecode(prefix=None):
-        fixed = b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
-        if prefix:
-            return fixed + b"prefix" + b"\0" + prefix.encode("utf-8") + b"\0"
-        else:
-            return fixed
+    def create_header_bytecode(key, value):
+        bytes_from_entry_fields=bytearray()
+        bytes_from_entry_fields.extend(key.encode("utf-8"))
+        bytes_from_entry_fields.extend(b"\0")
+        bytes_from_entry_fields.extend(value.encode("utf-8"))
+        bytes_from_entry_fields.extend(b"\0")
+        return bytes_from_entry_fields
 
     @staticmethod
     def header_entry_from_file(base_path, file_path):

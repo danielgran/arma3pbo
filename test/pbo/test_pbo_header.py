@@ -2,7 +2,7 @@ import ctypes
 import os
 import unittest
 
-from arma3pbo.pbo.business.pbo_header import PBOHeader
+from arma3pbo.pbo.business.pbo_head import PBOHead
 
 
 class TestPboHeader(unittest.TestCase):
@@ -16,7 +16,7 @@ class TestPboHeader(unittest.TestCase):
     expected_data_size = expected_original_size
     exptected_mimetype = ctypes.c_uint32(0)
 
-    entry = PBOHeader.header_entry_from_file(base_path, file_in_mission)
+    entry = PBOHead.header_entry_from_file(base_path, file_in_mission)
 
     self.assertEqual(file_in_mission, entry.filename)
     self.assertEqual(bytearray(exptected_mimetype), bytearray(entry.mimetype))

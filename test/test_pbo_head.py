@@ -2,28 +2,35 @@ import os
 import unittest
 import binascii
 
-from arma3pbo.pbo.business.pbo_header import PBOHeader
+from arma3pbo.pbo.business.pbo_head import PBOHead
 
 
 class PBOTest(unittest.TestCase):
   
-  def test_create_header_without_prefix(self):
-     head = PBOHeader.create_head_bytecode()
-     self.assertEqual(b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", head)
 
-  def test_create_header_with_prefix(self):
-    prefix="SOMEMISSIONPREFIX"
-    head = PBOHeader.create_head_bytecode(prefix)
-    self.assertEqual(head, b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0prefix\0" + prefix.encode("utf-8") + b"\0")
+  def test_create_head_bytecode(self):
+    self.assertEqual(bytearray(b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"), PBOHead.head_bytecode)
 
+  def test_create_head_with_key_value_pair(self):
+    key="prefix"
+    value="SOMEMISSIONPREFIX"
+    head = PBOHead.create_header_bytecode(key, value)
+
+    expected_bytes = bytearray()
+    expected_bytes.extend(key.encode("utf-8"))
+    expected_bytes.extend(b"\0")
+    expected_bytes.extend(value.encode("utf-8"))
+    expected_bytes.extend(b"\0")
+
+    self.assertEqual(expected_bytes, head)
 
 
   def test_create_bytecode_from_entry(self):
     base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/test/testfiles/testmission/KOTH.Altis"
     file_in_mission = "mission.sqm"
-    entry = PBOHeader.header_entry_from_file(base_path, file_in_mission)
+    entry = PBOHead.header_entry_from_file(base_path, file_in_mission)
 
-    bytecode = PBOHeader.create_bytecode_from_entry(entry)
+    bytecode = PBOHead.create_bytecode_from_entry(entry)
 
     bytes_from_entry_fields=bytearray()
     bytes_from_entry_fields.extend(entry.filename.encode("utf-8"))
