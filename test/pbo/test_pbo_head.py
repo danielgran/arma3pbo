@@ -3,7 +3,7 @@ import os
 import unittest
 import binascii
 
-from arma3pbo.pbo.business.pbo_head import PBOHead
+from arma3pbo.pbo.pbo_head import PBOHead
 
 
 class PBOTest(unittest.TestCase):
@@ -27,7 +27,7 @@ class PBOTest(unittest.TestCase):
 
 
   def test_create_bytecode_from_entry(self):
-    base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/test/testfiles/testmission/KOTH.Altis"
+    base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/testfiles/testmission/KOTH.Altis"
     file_in_mission = "mission.sqm"
     entry = PBOHead.header_entry_from_file(base_path, file_in_mission)
 
@@ -42,15 +42,13 @@ class PBOTest(unittest.TestCase):
     bytes_from_entry_fields.extend(bytearray(entry.timestamp))
     bytes_from_entry_fields.extend(bytearray(entry.data_size))
 
-    code = binascii.hexlify(bytecode)
-
     # + 1 because of the null byte at the end of the filename
     self.assertEqual(20 + 1, len(bytecode) - len(entry.filename.encode("utf-8"))) 
     self.assertEqual(bytes_from_entry_fields, bytecode)
 
 
   def test_create_header_file_entry_from_file(self):
-    base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/test/testfiles/testmission/KOTH.Altis"
+    base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/testfiles/testmission/KOTH.Altis"
     file_in_mission = "core/methods/fn_getAllTurretWeapons.sqf"
     expected_original_size = ctypes.c_uint32(os.path.getsize(base_path + "/" + file_in_mission))
     expected_reserved = ctypes.c_uint32(0)

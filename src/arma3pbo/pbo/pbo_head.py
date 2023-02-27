@@ -1,7 +1,7 @@
 import os
 import ctypes
 
-from arma3pbo.pbo.business.entity.header_entry import HeaderEntry
+from arma3pbo.pbo.entity.header_entry import HeaderEntry
 
 
 class PBOHead:
