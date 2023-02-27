@@ -1,13 +1,9 @@
 import os
 import unittest
 
-from arma3pbo.pbo.pbo import pbo
 from arma3pbo.pbo.business.entity.header_entry import HeaderEntry
 
 class PBOTest(unittest.TestCase):
-
-   
-
 
     @unittest.skip("Not implemented yet")
     def test_create_bytecode_from_entry(self):
@@ -31,15 +27,10 @@ class PBOTest(unittest.TestCase):
         expected_bytecode.extend(timestamp.to_bytes(4, byteorder))
         expected_bytecode.extend(data_size.to_bytes(4, byteorder))
 
-
         a=1
 
 
         self.assertEquals(expected_bytecode, pbo.create_bytecode_from_entry(filename, mimetype, original_size, reserved, timestamp, data_size, data))
-
-
-
-
 
 
     @unittest.skip("Not implemented yet")

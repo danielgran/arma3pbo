@@ -1,2 +1,0 @@
-class pbo:
-    pass
