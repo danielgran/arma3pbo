@@ -42,4 +42,12 @@ class PBOHead:
         bytes_from_entry_fields.extend(bytearray(entry.timestamp))
         bytes_from_entry_fields.extend(bytearray(entry.data_size))
         return bytes_from_entry_fields
+
+    @classmethod
+    def get_prefixes(cls, mod_path: str):
+        prefixes = {}
+        for filename in os.listdir(mod_path):
+            if filename.startswith("$") and filename.endswith("$") and len(filename) > 2:
+                prefixes[filename.lower().lstrip("$").rstrip("$")] = open(mod_path + "/" + filename, "r").read()
+        return prefixes
     

@@ -70,3 +70,14 @@ class PBOTest(unittest.TestCase):
     expected_bytes = bytearray([0 for i in range(21)])
 
     self.assertEqual(expected_bytes, bytes)
+
+
+  def test_get_prefixes(self):
+    mod_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/testfiles/testmod/duck.core"
+    expected_prefixes = {"pboprefix": "duck.core"}
+    prefixes = PBOHead.get_prefixes(mod_path)
+
+    self.assertEqual(expected_prefixes, prefixes)
+
+
+
