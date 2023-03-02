@@ -21,6 +21,7 @@ class tools:
                     output_path = output_path[:i] + output_path[i + 1:]
         return output_path
 
+    @staticmethod
     def get_files_from_parent_path(parent_path):
         parent_path = tools.correct_path(parent_path)
 
@@ -30,5 +31,5 @@ class tools:
                 full_path = dirpath + "/" + filename
                 files.append(full_path)
 
-        files = [file[len(parent_path)+1:] for file in files]
+        files = [file[len(parent_path) + 1:] for file in files]
         return files

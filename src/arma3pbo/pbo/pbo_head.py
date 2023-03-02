@@ -5,13 +5,12 @@ from arma3pbo.pbo.entity.header_entry import HeaderEntry
 
 
 class PBOHead:
-
     head_start_bytecode = bytearray(b"\0sreV\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0")
     head_empty_entry = bytearray(b"\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0")
 
     @staticmethod
     def create_header_bytecode(key, value):
-        bytes_from_entry_fields=bytearray()
+        bytes_from_entry_fields = bytearray()
         bytes_from_entry_fields.extend(key.encode("utf-8"))
         bytes_from_entry_fields.extend(b"\0")
         bytes_from_entry_fields.extend(value.encode("utf-8"))
@@ -30,10 +29,10 @@ class PBOHead:
             timestamp=ctypes.c_uint32(int(os.path.getmtime(complete_path))),
             data_size=ctypes.c_uint32(int(os.path.getsize(complete_path)))
         )
-    
+
     @staticmethod
     def create_bytecode_from_entry(entry: HeaderEntry):
-        bytes_from_entry_fields=bytearray()
+        bytes_from_entry_fields = bytearray()
         bytes_from_entry_fields.extend(entry.filename.encode("utf-8"))
         bytes_from_entry_fields.extend(b"\0")
         bytes_from_entry_fields.extend(bytearray(entry.mimetype))
@@ -50,4 +49,3 @@ class PBOHead:
             if filename.startswith("$") and filename.endswith("$") and len(filename) > 2:
                 prefixes[filename.lower().lstrip("$").rstrip("$")] = open(mod_path + "/" + filename, "r").read()
         return prefixes
-    
