@@ -1,5 +1,5 @@
 import os
-
+import glob
 
 class tools:
     @staticmethod
@@ -23,13 +23,20 @@ class tools:
 
     @staticmethod
     def get_files_from_parent_path(parent_path):
-        parent_path = tools.correct_path(parent_path)
 
         files = []
-        for (dirpath, dirnames, filenames) in os.walk(parent_path):
-            for filename in filenames:
-                full_path = dirpath + "/" + filename
-                files.append(full_path)
+        folders = []
+        for x in os.walk(parent_path, topdown=True):
+            folders.append(x[0])
 
-        files = [file[len(parent_path) + 1:] for file in files]
+        for folder in sorted(folders):
+            subfiles = []
+            for file in glob.glob(folder + "/*"):
+                if os.path.isfile(file):
+                    subfiles.append(file)
+            for subfile in sorted(subfiles):
+                files.append(subfile)
+
+        files = [f[len(parent_path)+1:] for f in files]
+
         return files

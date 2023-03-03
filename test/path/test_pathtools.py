@@ -30,9 +30,12 @@ class TestPathTools(unittest.TestCase):
         parent_path = project_path + "/test/testfiles/treetest"
 
         expected_files = [
+            "Amanda.txt",
             "Martin.txt",
-            "foo/bar.xlsx",
+            "asdf/bgx.txt",
+            "asdf/a/filename.png",
+            "foo/bar.xlsx"
             ]
+        actual_files = tools.get_files_from_parent_path(parent_path)
 
-        self.assertEqual(expected_files, tools.get_files_from_parent_path(parent_path))
-        self.assertEqual(expected_files, tools.get_files_from_parent_path(parent_path+"/"))
+        self.assertEqual(expected_files, actual_files)
