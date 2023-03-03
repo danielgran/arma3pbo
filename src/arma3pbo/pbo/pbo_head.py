@@ -1,6 +1,7 @@
 import os
 import ctypes
 
+from arma3pbo.path.tools import tools
 from arma3pbo.pbo.entity.header_entry import HeaderEntry
 
 
@@ -22,7 +23,7 @@ class PBOHead:
         complete_path = base_path + "/" + file_path
 
         return HeaderEntry(
-            filename=file_path,
+            filename=tools.convert_to_winPath(file_path),
             mimetype=ctypes.c_uint32(0),
             original_size=ctypes.c_uint32(os.path.getsize(complete_path)),
             reserved=ctypes.c_uint32(0),
