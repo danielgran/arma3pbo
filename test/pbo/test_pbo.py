@@ -17,7 +17,8 @@ class TestPBO(unittest.TestCase):
             expected_bytecode_from_file = bytearray(f.read())
         bytecode_pbo = PBO.pack(path_to_mission)
 
-        print(len(expected_bytecode_from_file))
-        print(len(bytecode_pbo))
+        # write bytecode to file
+        with open(absolute_project_path + "/testfiles/testmission/KOTH.Altis.pbo.test", "wb") as f:
+            f.write(bytecode_pbo)
 
         self.assertEqual(len(expected_bytecode_from_file), len(bytecode_pbo))
