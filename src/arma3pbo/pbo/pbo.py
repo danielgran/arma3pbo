@@ -29,3 +29,12 @@ class PBO:
         bytes.extend(PBOFoot.get_hash(bytes))
 
         return bytes
+
+    @classmethod
+    def write_bytecode_to_file(cls, path, bytes):
+        with open(path, "wb") as f:
+            f.write(bytes)
+
+    @classmethod
+    def build(cls, path, dest):
+        cls.write_bytecode_to_file(dest, cls.pack(path))
