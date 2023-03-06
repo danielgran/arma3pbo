@@ -1,5 +1,9 @@
 # arma3pbo
-This repository is a small way on how to pack folders into pbo files. This Python script is implemented with TDD. Also we are frickling around with ctypes, many bytearrays and pretty low-level-file-system-style topics. Was pretty fun to implement it! 
+This repository is a small way on how to pack folders into pbo files. This Python script is implemented with TDD. Also we are frickling around with ctypes, many bytearrays and pretty low-level-file-system-style topics. Was pretty fun to implement it!
+
+## License
+"Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
+https://creativecommons.org/licenses/by-sa/4.0/
 
 ## Requirements
 You must know the principles of TDD and be skilled in python programming.
